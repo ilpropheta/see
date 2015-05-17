@@ -5,7 +5,7 @@ Simple expression evaluator in C++. Revisitation of the [Shunting-yard algorithm
 
 ### In a nutshell ###
 
-Inspired by https://github.com/bamos/cpp-expression-parser, I have redesigned the code and I have added some abstractions.
+Inspired by https://github.com/bamos/cpp-expression-parser, I have redesigned the code, provided some abstractions and added some features.
 
 Already supported features:
 * Unary operators. +, -
