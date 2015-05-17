@@ -1,7 +1,7 @@
 See
 =======
 
-Simple expression evaluator. Revisitation of the Shunting-yard algorithm.
+Simple expression evaluator in C++. Revisitation of the Shunting-yard algorithm.
 
 ### In a nutshell ###
 
