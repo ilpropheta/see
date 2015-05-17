@@ -8,33 +8,33 @@ Simple expression evaluator. Revisitation of the Shunting-yard algorithm.
 Inspired by https://github.com/bamos/cpp-expression-parser, I have redesigned the code and I have added some abstractions.
 
 Already supported features:
-	* Unary operators. +, -
-	* Binary operators. +, -, /, +
-	* Custom constant names
+* Unary operators. +, -
+* Binary operators. +, -, /, +
+* Custom constant names
 
 I added these features:
-	* Custom binary operators support
-	* Custom (unary) functions support
-	* split between parsing and RPN (Reverse Polish Notation) transformation
+* Custom binary operators support
+* Custom (unary) functions support
+* split between parsing and RPN (Reverse Polish Notation) transformation
 
 ### Example ###
 
-	#include <iostream>
-	#include "shunting-yard.h"
-
-	int main() 
-	{
-  		std::map<std::string, double> consts;
-  		consts["e"] = 2,71;
-  		ShuntingYardCalculator calc(move(consts));
-  		std::cout << calc.Calculate("-e + 2") << std::endl;
-	}
+```
+#include <iostream>
+#include "shunting-yard.h"
+int main() 
+{
+	std::map<std::string, double> consts;
+	consts["e"] = 2,71;
+ 	ShuntingYardCalculator calc(move(consts));
+  	std::cout << calc.Calculate("-e + 2") << std::endl;
+}
 	
 ### Adding operators/functions ###
 
- 	// automatically provides {+,-,/,*,^}
-	auto ctx = CreateSimpleContext();
-  	ctx.unaryOperators["sin"] = [](double d) { return std::sin(d); };
+// automatically provides {+,-,/,*,^}
+auto ctx = CreateSimpleContext();
+ctx.unaryOperators["sin"] = [](double d) { return std::sin(d); };
   	ctx.operatorsPrecedence["sin"] = 4;
   	ctx.binaryOperators[">"] = [](double left, double right) { return left>right ? 1.0 : 0.0; };
   	ctx.operatorsPrecedence[">"] = 1;
@@ -60,6 +60,6 @@ A concrete visitor maintains the state of the parsing. For example, a RPNVisitor
 
 ### Some open points ###
 
-	* Stateless functions could be referenced instead of copied (e.g. it's possible to create a sort of BinaryOpEvaluator which references BinaryFunction instead of copying it)
-	* More information on errors
-	* Vector types
+* Stateless functions could be referenced instead of copied (e.g. it's possible to create a sort of BinaryOpEvaluator which references BinaryFunction instead of copying it)
+* More information on errors
+* Vector types
