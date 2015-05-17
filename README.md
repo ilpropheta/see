@@ -19,7 +19,7 @@ I added these features:
 
 ### Example ###
 
-```
+``` cpp
 #include <iostream>
 #include "shunting-yard.h"
 int main() 
@@ -29,34 +29,39 @@ int main()
  	ShuntingYardCalculator calc(move(consts));
   	std::cout << calc.Calculate("-e + 2") << std::endl;
 }
-	
+```
+
 ### Adding operators/functions ###
 
+``` cpp
 // automatically provides {+,-,/,*,^}
 auto ctx = CreateSimpleContext();
 ctx.unaryOperators["sin"] = [](double d) { return std::sin(d); };
-  	ctx.operatorsPrecedence["sin"] = 4;
-  	ctx.binaryOperators[">"] = [](double left, double right) { return left>right ? 1.0 : 0.0; };
-  	ctx.operatorsPrecedence[">"] = 1;
+ctx.operatorsPrecedence["sin"] = 4;
+ctx.binaryOperators[">"] = [](double left, double right) { return left>right ? 1.0 : 0.0; };
+ctx.operatorsPrecedence[">"] = 1;
 
-  	ShuntingYardCalculator calc(move(ctx));
-  	std::cout << calc.Calculate("sin(3.14/2)>0") << std::endl;
+ShuntingYardCalculator calc(move(ctx));
+std::cout << calc.Calculate("sin(3.14/2)>0") << std::endl;
+```
 
 ### A design experiment ###
 
 I have opted for a visitor approach to split parsing and RPN transformation. There is a simple visitor interface like this:
 
-	struct ExpressionVisitor
-	{
-		virtual ~ExpressionVisitor() = default;
-		virtual void OnDigit(double value) = 0;
-		virtual void OnWord(const std::string& name) = 0;
-		virtual void OnOperator(const std::string& name) = 0;
-	};
+``` cpp
+struct ExpressionVisitor
+{
+	virtual ~ExpressionVisitor() = default;
+	virtual void OnDigit(double value) = 0;
+	virtual void OnWord(const std::string& name) = 0;
+	virtual void OnOperator(const std::string& name) = 0;
+};
+```
 
 A concrete visitor maintains the state of the parsing. For example, a RPNVisitor is provided, which handles the RPN transformation. You can use the parser directly by calling:
 
-	static void ExpressionParser::Parse(const char* expr, ExpressionVisitor& visitor);
+``` cpp static void ExpressionParser::Parse(const char* expr, ExpressionVisitor& visitor); ```
 
 ### Some open points ###
 
