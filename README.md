@@ -1,7 +1,7 @@
 See
 =======
 
-Simple expression evaluator in C++. Revisitation of the Shunting-yard algorithm.
+Simple expression evaluator in C++. Revisitation of the [Shunting-yard algorithm](http://en.wikipedia.org/wiki/Shunting-yard_algorithm).
 
 ### In a nutshell ###
 
@@ -12,7 +12,7 @@ Already supported features:
 * Binary operators. +, -, /, +
 * Custom constant names
 
-I added these features:
+I added:
 * Custom binary operators support
 * Custom (unary) functions support
 * split between parsing and RPN (Reverse Polish Notation) transformation
@@ -25,7 +25,7 @@ I added these features:
 int main() 
 {
 	std::map<std::string, double> consts;
-	consts["e"] = 2,71;
+	consts["e"] = 2.71;
  	ShuntingYardCalculator calc(move(consts));
   	std::cout << calc.Calculate("-e + 2") << std::endl;
 }
@@ -59,7 +59,7 @@ struct ExpressionVisitor
 };
 ```
 
-A concrete visitor maintains the state of the parsing. For example, a RPNVisitor is provided, which handles the RPN transformation. You can use the parser directly by calling:
+A concrete visitor maintains the state of the parsing. For example, a `RPNVisitor` is provided, which handles the RPN transformation. You can use the parser directly by calling:
 
 ``` cpp
 static void ExpressionParser::Parse(const char* expr, ExpressionVisitor& visitor); 
@@ -67,6 +67,6 @@ static void ExpressionParser::Parse(const char* expr, ExpressionVisitor& visitor
 
 ### Some open points ###
 
-* Stateless functions could be referenced instead of copied (e.g. it's possible to create a sort of BinaryOpEvaluator which references BinaryFunction instead of copying it)
+* Stateless functions could be referenced instead of copied (e.g. it's possible to create a sort of `BinaryOpEvaluator` which references `BinaryFunction` instead of copying it)
 * More information on errors
 * Vector types
