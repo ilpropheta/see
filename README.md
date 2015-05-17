@@ -61,7 +61,9 @@ struct ExpressionVisitor
 
 A concrete visitor maintains the state of the parsing. For example, a RPNVisitor is provided, which handles the RPN transformation. You can use the parser directly by calling:
 
-``` cpp static void ExpressionParser::Parse(const char* expr, ExpressionVisitor& visitor); ```
+``` cpp
+static void ExpressionParser::Parse(const char* expr, ExpressionVisitor& visitor); 
+```
 
 ### Some open points ###
 
