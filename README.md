@@ -67,6 +67,7 @@ static void ExpressionParser::Parse(const char* expr, ExpressionVisitor& visitor
 
 ### Some open points ###
 
+* Some cases are not handled (e.g. --8 or e^-2)
 * Stateless functions could be referenced instead of copied (e.g. it's possible to create a sort of `BinaryOpEvaluator` which references `BinaryFunction` instead of copying it)
 * More information on errors
 * Vector types
