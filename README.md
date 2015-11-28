@@ -71,3 +71,7 @@ static void ExpressionParser::Parse(const char* expr, ExpressionVisitor& visitor
 * Stateless functions could be referenced instead of copied (e.g. it's possible to create a sort of `BinaryOpEvaluator` which references `BinaryFunction` instead of copying it)
 * More information on errors
 * Vector types
+ 
+## Why "see"?
+
+You may think "See stands for Simple Expression Evaluator". It's the half of the truth: you know I always name my github repo with Roman words and this time I was no less so...See also means "See! Non ci credo!" that is "I don't believe you!". The more "e" you use, the more enphasis you get! For example "Seeeee" is stronger than "Seee".
